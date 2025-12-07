@@ -1,0 +1,31 @@
+# Data paths 
+transforms_path: "data/Family/processed/transforms.json"
+images_dir: "data/Family/images"
+masks_dir: "data/Family/processed/semantic_masks"
+
+# Model
+D: 8
+W: 256
+num_freqs: 10
+num_classes: 10
+skip_layer: 4
+
+# Training
+num_epochs: 200
+N_rays: 1024
+N_samples: 64
+lr: 5e-4
+lambda_semantic: 0.1
+
+# Depth
+near: 2.0
+far: 6.0
+
+# Data
+downscale: 1
+white_bkgd: true
+
+# Checkpointing
+checkpoint_dir: "checkpoints"
+output_dir: "outputs"
+save_every: 20

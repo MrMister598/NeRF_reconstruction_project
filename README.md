@@ -25,37 +25,10 @@ The final model can:
 - Render **RGB and semantic views** from novel camera poses.
 - Produce a **semantic point cloud** with statue vs base separated.
 
----
-
-## 2. Repository structure
-
-```
-.
-├─ semantic_nerf/
-│  ├─ model.py            # SemanticNeRF architecture (NeRF + semantic head)
-│  ├─ dataset.py          # HeritageNeRFDataset with sparse semantic supervision
-│  ├─ rendering.py        # Ray sampling + volume rendering
-│  ├─ loss.py             # RGB + semantic loss, PSNR, SSIM
-│  ├─ encoding.py         # Positional encoding
-│  ├─ metrics.py          # Evaluation metrics
-│  └─ utils.py            # Checkpointing, parameter counting, etc.
-│
-├─ data/
-│  └─ Family/
-│     ├─ images/          # All input images (RGB)
-│     ├─ manual_masks/    # 7 manually labeled keyframes (PNG)
-│     ├─ processed/
-│     │  └─ transforms.json  # Camera poses & intrinsics from SfM
-│     └─ key_list.txt     # List of keyframe stems (e.g. 00012, 00027, ...)
-│
-├─ train_nerf.py          # Train Semantic-NeRF
-├─ render_nerf.py         # Render views + semantic point cloud
-└─ README.md
-```
 
 ---
 
-## 3. Setup
+## 2. Setup
 
 ### Requirements
 
@@ -84,7 +57,7 @@ Place your dataset under `data/Family/`:
 
 ---
 
-## 4. Training Semantic‑NeRF
+## 3. Training Semantic‑NeRF
 
 We train on **all images** but only apply semantic loss on rays from the 7 keyframes.
 
@@ -132,7 +105,7 @@ During training:
 
 ---
 
-## 5. Rendering and point cloud export
+## 4. Rendering and point cloud export
 
 After training, use `render_nerf.py` to:
 
@@ -160,7 +133,7 @@ Inspect it in Meshlab, CloudCompare, etc.
 
 ---
 
-## 6. Method summary
+## 5. Method summary
 
 - Start from a NeRF-style MLP with positional encoding.
 - Add a **semantic head** that outputs class logits at each sampled 3D point.
@@ -172,7 +145,7 @@ Inspect it in Meshlab, CloudCompare, etc.
 
 ---
 
-## 7. Limitations & future work
+## 6. Limitations & future work
 
 - Heuristic K-means and U-Net based segmentation were attempted but not robust.
   - Often separated shadows vs non-shadows instead of statue vs base.
@@ -183,7 +156,3 @@ Inspect it in Meshlab, CloudCompare, etc.
   - Scaling to larger, more complex heritage scenes.
 
 ---
-
-## 8. Acknowledgements
-
-Built for a course project on 3D reconstruction and neural rendering.
